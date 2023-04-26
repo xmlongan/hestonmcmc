@@ -1,0 +1,25 @@
+Package: hestonmcmc
+Type: Package
+Title: MCMC for Estimating Heston Stochastic Volatility Models
+Version: 0.1.0
+Date: 2023-04-23
+Author: Yanfeng Wu
+Maintainer: Yanfeng Wu <yanfengwu13@fudan.edu.cn>
+Description: An implementation of Markov Chain Monte Carlo (MCMC) method for
+       estimating Heston Stochastic Volatility Models.
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+RoxygenNote: 7.2.1
+Roxygen: list(markdown = TRUE)
+VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)
+Imports: 
+    Rcpp, stats
+LinkingTo: Rcpp
