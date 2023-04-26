@@ -1,31 +1,34 @@
 # hestonmcmc
 An R package `hestonmcmc` for Estimating Heston Stochastic Volatility Models using MCMC method
 
-Heston Stochastic Volatility Model
+Heston Stochastic Volatility Model refers to following paper
 
 Heston, S. L. (1993). A closed-form solution for options with stochastic volatility with applications
 to bond and currency options. *The review of financial studies*, 6(2), 327-343.
 [https://doi.org/10.1093/rfs/6.2.327](https://doi.org/10.1093/rfs/6.2.327)
 
-## Sample Data
+## Installation
 
-### Option 1: using existing sample data
+First intall the `devtools` package by `install.packages("devtools")`, then
 
-`Y_series` is a sample trajectory with 1,000 observations which are generated
-by Euler approximation. The true parameters are
-|mu | k | theta | sigma_v | rho|
-|:---|:---|:---|:---|:----|:---|
-|0.125|0.1|0.25|0.1|-0.7|
-and the time unit h = 1.
+```r
+library(devtools)
+devtools::install_github("xmlongan/hestonmcmc")
+```
+
+
+## Prepare Sample Data
+
+* Option 1: using existing sample data. 
 
 ```r
 library(hestonmcmc)
-y = Y_series
+y = Y_series # 1,000 return points, time unit h = 1
+# sampled using Euler Approximation
+# with parameters (mu=0.125, k=0.1, theta=0.25, sigma_v=0.1, rho=-0.7)
 ```
 
-### Option 2: generate a sample
-
-Just generate a random sample trajectory using crHeston()
+* Option 2: generate a sample trajectory using `crHeston()`
 
 ```r
 S0 = c(0.125,0.1,0.25,0.1,-0.7)
@@ -33,7 +36,7 @@ y_series_0 = crHeston(v_0=S0[3], n_segment=10, par=S0, N=1000, h=1)
 ```
 
 
-### Option 3: Generate and Write to Files Large Number of Sample Trajectories
+* Option 3: Generate and Write to Files Large Number of Sample Trajectories
 
 ```r
 par0 = c(0.125,0.1,0.25,0.1,-0.7)
@@ -50,7 +53,7 @@ parameters_record_v = mcmc(y,echo = TRUE)
 ```
 
 The priors and other setting refers to mcmc(), by typing `?mcmc` + Enter in the
-Console.
+R Console.
 
 ### Example Using `cmcmc()`
 
@@ -59,17 +62,15 @@ parameters = cmcmc(Y_series,g=90000,G=100000)
 parameters
 ```
 
-Run records:
+Some run records:
 
 |     |mu| k | theta | sigma_v | rho|
-|:---:|:----|:---|:----------|:-----------|:------|
+|:---:|:----|:---|:----------|:-----------|:---|
 |true values|0.125|0.1 |0.25       |0.1         |-0.7   |
 |run1(g=2K,G=10K) |0.05727125 |0.01633974 |0.10742531 |0.01051467 |-0.06455093|
-|run2(g=2K,G=10K) |0.05790192 |0.01503496 |0.10796416 |0.01009222 |-0.05384306|
-|run3(g=2K,G=10K) |0.05849966 |0.01498290 |0.10895028 |0.01038532 |-0.04910205|
-|run4(g=5K,G=10K) |0.06004212 |0.01577060 |0.11097616 |0.01056999 |-0.08140302|
-|run5(g=15K,G=20K)|0.06744194 |0.02566914 |0.12225802 |0.01139778 |-0.21733187|
-|run6(g=90K,G=100K)|0.11382411|0.05106944 |0.21238676 |0.02905102 |-0.71997816|
+|run2(g=5K,G=10K) |0.06004212 |0.01577060 |0.11097616 |0.01056999 |-0.08140302|
+|run3(g=15K,G=20K)|0.06744194 |0.02566914 |0.12225802 |0.01139778 |-0.21733187|
+|run4(g=90K,G=100K)|0.11382411|0.05106944 |0.21238676 |0.02905102 |-0.71997816|
 
 ### Example Using `mcmc2()`
 
@@ -88,10 +89,4 @@ Run records:
 
 ## Notes
 
-The cpp version: all R functions have a equivalent cpp implemented version, 
-such as following:
-
-* `mcmc()` v.s. `cmcmc()`
-* `rmu()` v.s. `crmu()`
-* `rk()`  v.s. `crk()`
-* and so on.
+Refer to the help of each function for details, through such as `?mcmc`.
