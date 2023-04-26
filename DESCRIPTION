@@ -23,3 +23,5 @@ Depends:
 Imports: 
     Rcpp, stats
 LinkingTo: Rcpp
+URL: https://github.com/xmlongan/hestonmcmc
+BugReports: https://github.com/xmlongan/hestonmcmc/issues
