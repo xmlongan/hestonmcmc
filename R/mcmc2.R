@@ -28,6 +28,7 @@
 #' * \eqn{v_N}: [rvN()]
 #'
 #' @param y vector of returns \[\eqn{y_1, ..., y_N}\].
+#' @param ini_par vector of parameter initial values.
 #' @param g number of warm-up iterations, defaults to 5,000.
 #' @param G number of total iterations, defaults to 10,000.
 #' @param G_sub number of sub iterations for each Metropolis sampler, i.e., 
@@ -45,11 +46,12 @@
 #'
 #' @examples
 #' y = rep(0.125,20)
-#' mcmc(y)
-mcmc2 <- function(y,g=5000,G=10000,G_sub=10,h=1,echo=FALSE) {
+#' ini_par=c(0.0625,0.05,0.125,0.05,-0.35)
+#' mcmc(y, ini_par)
+mcmc2 <- function(y, ini_par, g=5000, G=10000, G_sub=10, h=1, echo=FALSE) {
   # g: warm-up samples
   # G: total samples
-  init_values = initialize_values(y, parameters=c(0,0.01,0.1,0.01,0), h=1)
+  init_values = initialize_values(y, ini_par, h=1)
   #
   mu      = init_values$parameters[1]
   k       = init_values$parameters[2]
