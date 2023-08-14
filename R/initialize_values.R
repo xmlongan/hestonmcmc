@@ -29,7 +29,8 @@
 #'       \end{cases}}
 #'
 #' @param y vector of returns \[\eqn{y_1, ..., y_N}\].
-#' @param parameters vector of parameters \eqn{(\mu,k,\theta,\sigma_v,\rho)}.
+#' @param ini_par vector of parameters \eqn{(\mu,k,\theta,\sigma_v,\rho)} 
+#' initial values.
 #' @param h time unit.
 #'
 #' @return a list with two elements, one vector of all parameters, and another
@@ -38,12 +39,13 @@
 #'
 #' @examples
 #' y = rep(0.125,4)
-#' parameters_v = initialize_values(y)
-initialize_values <- function(y,parameters=c(0,0.01,0.1,0.01,0),h=1) {
+#' ini_par=c(0.0625,0.05,0.125,0.05,-0.35)
+#' parameters_v = initialize_values(y, ini_par)
+initialize_values <- function(y, ini_par, h=1) {
   # initial parameter values
   # mu=0; k=0.01; theta=0.1; sigma_v=0.01; rho=0
-  mu = parameters[1]; k = parameters[2]; theta = parameters[3]
-  sigma_v = parameters[4]; rho = parameters[5]
+  mu = ini_par[1]; k = ini_par[2]; theta = ini_par[3]
+  sigma_v = ini_par[4]; rho = ini_par[5]
 
   N = length(y)
   # initial v0:vN
