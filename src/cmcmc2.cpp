@@ -17,19 +17,16 @@ using namespace Rcpp;
 
 //' @rdname mcmc2
 // [[Rcpp::export]]
-NumericVector cmcmc2(NumericVector y, int g = 2000, int G = 10000, 
+NumericVector cmcmc2(NumericVector y, NumericVector ini_par,
+                     int g = 2000, int G = 10000, 
                      int G_sub = 10, double h = 1, double echo = 0) {
   // g: warm-up samples
   // G: total samples
-  NumericVector parameters (5);
-  NumericVector v = cinitialize_values(y,parameters,1);
+  // NumericVector parameters (5);
+  NumericVector v = cinitialize_values(y, ini_par, 1);
   //
-  double mu, k, theta, sigma_v, rho;
-  mu = parameters[0];
-  k = parameters[1];
-  theta = parameters[2];
-  sigma_v = parameters[3];
-  rho = parameters[4];
+  double mu=ini_par[0], k=ini_par[1], theta=ini_par[2];
+  double sigma_v=ini_par[3], rho=ini_par[4];
   //
   double prior_shape_v0, prior_rate_v0;
   prior_shape_v0 = 2*k*theta/std::pow(sigma_v, 2);
