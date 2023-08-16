@@ -9,7 +9,7 @@ to bond and currency options. *The review of financial studies*, 6(2), 327-343.
 
 ## Installation
 
-First intall the `devtools` package by `install.packages("devtools")`, then
+First intall the `devtools` package by `install.packages("devtools")`, and install `Rtools`, then
 
 ```r
 library(devtools)
@@ -47,8 +47,9 @@ gen_data('par0', par0, N=100000, N_rep=200, h=1, n_segment=10)
 
 ### Example Using `mcmc()`
 
-```{r}
-parameters_record_v = mcmc(y,echo = TRUE)
+```r
+ini_par = c(0.125/2,0.1/2,0.25/2,0.1/2,-0.7/2) # the initial parameter values
+parameters_record_v = mcmc(y, ini_par, echo = TRUE)
 # record_v is the last 100 trajectories
 ```
 
@@ -58,7 +59,8 @@ R Console.
 ### Example Using `cmcmc()`
 
 ```r
-parameters = cmcmc(Y_series,g=90000,G=100000)
+ini_par = c(0.125/2,0.1/2,0.25/2,0.1/2,-0.7/2) # the initial parameter values
+parameters = cmcmc(Y_series, ini_par, g=90000, G=100000)
 parameters
 ```
 
@@ -75,7 +77,8 @@ Some run records:
 ### Example Using `mcmc2()`
 
 ```r
-parameters = cmcmc2(Y_series, g=2000, G =10000, G_sub=10)
+ini_par = c(0.125/2,0.1/2,0.25/2,0.1/2,-0.7/2) # the initial parameter values
+parameters = cmcmc2(Y_series, ini_par, g=2000, G =10000, G_sub=10)
 parameters
 ```
 
