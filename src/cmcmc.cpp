@@ -17,7 +17,8 @@ using namespace Rcpp;
 
 //' @rdname mcmc
 // [[Rcpp::export]]
-NumericVector cmcmc(NumericVector y, NumericVector ini_par, int g = 5000, int G = 10000, double h = 1,
+NumericVector cmcmc(NumericVector y, NumericVector ini_par,
+                    int g = 5000, int G = 10000, double h = 1,
                     double echo = 0) {
   // g: warm-up samples
   // G: total samples
