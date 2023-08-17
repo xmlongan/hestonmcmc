@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Wu
+    given-names: Yanfeng
+    orcid: https://orcid.org/0000-0002-7105-1070
+title: "MCMC for Estimating Heston Stochastic Volatility Models"
+version: 0.1.0
+url: https://github.com/xmlongan/hestonmcmc.git
+doi: 
+date-released: 2023-08-16
